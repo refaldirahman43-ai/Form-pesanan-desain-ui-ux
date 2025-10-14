@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasil Pemesanan - TokoNusantara</title>
+    <link rel="stylesheet" href="pratikum.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">🛍️</div>
+                <div class="logo-text">Toko Repaldi</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="order.html">Beranda</a></li>
+                    <li><a href="#">Produk</a></li>
+                    <li><a href="#">Tentang Kami</a></li>
+                    <li><a href="#">Kontak</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="result-section">
+            <h1>Konfirmasi Pemesanan</h1>
+            <p class="subtitle">Terima kasih telah melakukan pemesanan. Berikut adalah detail pesanan Anda:</p>
+
+            <div class="status-badge status-success">
+                Pesanan Berhasil Diproses
+            </div>
+
+            <div class="product-card">
+                <div class="product-header">
+                    <div class="product-title">Kerajinan Batik Premium</div>
+                    <div class="product-price">Rp 450.000</div>
+                </div>
+                <div class="product-image">
+                    <img src="https://source.unsplash.com/600x300/?batik,indonesia" alt="Batik Indonesia">
+                </div>
+                <div class="product-description">
+                    Batik tulis premium dengan motif tradisional Indonesia. Dibuat dengan bahan katun berkualitas tinggi dan pewarna alami.
+                </div>
+            </div>
+
+            <div class="result-grid">
+                <div class="result-group">
+                    <div class="result-label">Nama Lengkap</div>
+                    <div class="result-value" id="result-name">-</div>
+                </div>
+                
+                <div class="result-group">
+                    <div class="result-label">Email</div>
+                    <div class="result-value" id="result-email">-</div>
+                </div>
+                
+                <div class="result-group">
+                    <div class="result-label">Nomor Telepon</div>
+                    <div class="result-value" id="result-phone">-</div>
+                </div>
+                
+                <div class="result-group full-width">
+                    <div class="result-label">Alamat Pengiriman</div>
+                    <div class="result-value" id="result-address">-</div>
+                </div>
+                
+                <div class="result-group">
+                    <div class="result-label">Provinsi</div>
+                    <div class="result-value" id="result-province">-</div>
+                </div>
+                
+                <div class="result-group">
+                    <div class="result-label">Kota/Kabupaten</div>
+                    <div class="result-value" id="result-city">-</div>
+                </div>
+                
+                <div class="result-group">
+                    <div class="result-label">Kode Pos</div>
+                    <div class="result-value" id="result-postalCode">-</div>
+                </div>
+                
+                <div class="result-group">
+                    <div class="result-label">Jumlah Barang</div>
+                    <div class="result-value" id="result-quantity">-</div>
+                </div>
+                
+                <div class="result-group">
+                    <div class="result-label">Metode Pembayaran</div>
+                    <div class="result-value" id="result-payment">-</div>
+                </div>
+                
+                <div class="result-group full-width">
+                    <div class="result-label">Catatan Tambahan</div>
+                    <div class="result-value" id="result-notes">-</div>
+                </div>
+            </div>
+
+            <div class="order-summary">
+                <div class="summary-header">Ringkasan Pesanan</div>
+                <div class="summary-item">
+                    <span>Subtotal (1 barang)</span>
+                    <span>Rp 450.000</span>
+                </div>
+                <div class="summary-item">
+                    <span>Biaya Pengiriman</span>
+                    <span>Rp 25.000</span>
+                </div>
+                <div class="summary-item">
+                    <span>Biaya Layanan</span>
+                    <span>Rp 5.000</span>
+                </div>
+                <div class="summary-total">
+                    <span>Total Pembayaran</span>
+                    <span id="total-payment">Rp 480.000</span>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <a href="pratikum4a.html" class="btn btn-secondary">Pesan Lagi</a>
+                <button class="btn btn-primary" onclick="window.print()">Cetak Konfirmasi</button>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Ambil data dari localStorage dan tampilkan di halaman hasil
+        document.addEventListener('DOMContentLoaded', function() {
+            const orderData = JSON.parse(localStorage.getItem('orderData'));
+            
+            if (orderData) {
+                document.getElementById('result-name').textContent = orderData.name;
+                document.getElementById('result-email').textContent = orderData.email;
+                document.getElementById('result-phone').textContent = orderData.phone;
+                document.getElementById('result-address').textContent = orderData.address;
+                document.getElementById('result-province').textContent = orderData.province;
+                document.getElementById('result-city').textContent = orderData.city;
+                document.getElementById('result-postalCode').textContent = orderData.postalCode;
+                document.getElementById('result-quantity').textContent = orderData.quantity;
+                
+                // Konversi nilai payment ke teks yang lebih deskriptif
+                let paymentText = '';
+                switch(orderData.payment) {
+                    case 'transfer': paymentText = 'Transfer Bank'; break;
+                    case 'credit': paymentText = 'Kartu Kredit'; break;
+                    case 'cod': paymentText = 'Bayar di Tempat (COD)'; break;
+                    default: paymentText = orderData.payment;
+                }
+                document.getElementById('result-payment').textContent = paymentText;
+                
+                document.getElementById('result-notes').textContent = orderData.notes || 'Tidak ada catatan';
+                
+                // Hitung total pembayaran berdasarkan jumlah barang
+                const pricePerItem = 450000;
+                const shippingCost = 25000;
+                const serviceFee = 5000;
+                const total = (pricePerItem * parseInt(orderData.quantity)) + shippingCost + serviceFee;
+                
+                // Format angka ke format Rupiah
+                document.getElementById('total-payment').textContent = formatRupiah(total);
+                
+                // Update subtotal dan biaya pengiriman di ringkasan
+                document.querySelector('.summary-item:nth-child(1) span:first-child').textContent = 
+                    `Subtotal (${orderData.quantity} barang)`;
+                document.querySelector('.summary-item:nth-child(1) span:last-child').textContent = 
+                    formatRupiah(pricePerItem * parseInt(orderData.quantity));
+            } else {
+                // Jika tidak ada data, redirect ke halaman pemesanan
+                window.location.href = 'order.html';
+            }
+        });
+        
+        function formatRupiah(angka) {
+            return 'Rp ' + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+    </script>
+</body>
+</html>

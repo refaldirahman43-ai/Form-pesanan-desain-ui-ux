@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="pratikum.css">
+    <title>Form Pemesanan Barang - Toko Repaldi</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">🛍️</div>
+                <div class="logo-text">Toko Repaldi</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Beranda</a></li>
+                    <li><a href="#">Produk</a></li>
+                    <li><a href="#">Tentang Kami</a></li>
+                    <li><a href="#">Kontak</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="form-section">
+            <h1>Form Pemesanan Barang</h1>
+            <p class="subtitle">Isi formulir di bawah ini untuk memesan produk pilihan Anda</p>
+
+            <div class="product-card">
+                <div class="product-header">
+                    <div class="product-title">Kerajinan Batik Premium</div>
+                    <div class="product-price">Rp 450.000</div>
+                </div>
+                <div class="product-image">
+                    <img src="batik.jpeg" alt="Batik Indonesia">
+                </div>
+                <div class="product-description">
+                    Batik tulis premium dengan motif tradisional Indonesia. Dibuat dengan bahan katun berkualitas tinggi dan pewarna alami.
+                </div>
+                <div class="product-features">
+                    <div class="feature">
+                        <span class="feature-icon">✓</span>
+                        <span>Bahan Katun 100%</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">✓</span>
+                        <span>Motif Tradisional</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">✓</span>
+                        <span>Pewarna Alami</span>
+                    </div>
+                </div>
+            </div>
+
+            <form id="orderForm" action="pratikumm4b.html" method="get">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="name">Nama Lengkap</label>
+                        <input type="text" id="name" name="name" class="form-control" placeholder="Masukkan nama lengkap" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="nama@contoh.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Nomor Telepon</label>
+                        <input type="tel" id="phone" name="phone" class="form-control" placeholder="08xxxxxxxxxx" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Alamat Pengiriman</label>
+                        <textarea id="address" name="address" class="form-control" placeholder="Masukkan alamat lengkap pengiriman" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="province">Provinsi</label>
+                        <div class="select-wrapper">
+                            <select id="province" name="province" class="form-control" required>
+                                <option value="" disabled selected>Pilih Provinsi</option>
+                                <option value="jakarta">DKI Jakarta</option>
+                                <option value="jabar">Jawa Barat</option>
+                                <option value="jateng">Jawa Tengah</option>
+                                <option value="jatim">Jawa Timur</option>
+                                <option value="bali">Bali</option>
+                                <option value="sumut">Sumatera Utara</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city">Kota/Kabupaten</label>
+                        <div class="select-wrapper">
+                            <select id="city" name="city" class="form-control" required>
+                                <option value="" disabled selected>Pilih Kota/Kabupaten</option>
+                                <option value="jakpus">Jakarta Pusat</option>
+                                <option value="jaks">Jakarta Selatan</option>
+                                <option value="bandung">Bandung</option>
+                                <option value="surabaya">Surabaya</option>
+                                <option value="denpasar">Denpasar</option>
+                                <option value="medan">Medan</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="postalCode">Kode Pos</label>
+                        <input type="text" id="postalCode" name="postalCode" class="form-control" placeholder="Contoh: 12345" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quantity">Jumlah Barang</label>
+                        <input type="number" id="quantity" name="quantity" class="form-control" min="1" value="1" required>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Metode Pembayaran</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" id="bankTransfer" name="payment" value="transfer" checked>
+                                <label for="bankTransfer">Transfer Bank</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" id="creditCard" name="payment" value="credit">
+                                <label for="creditCard">Kartu Kredit</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" id="cod" name="payment" value="cod">
+                                <label for="cod">Bayar di Tempat (COD)</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="notes">Catatan Tambahan (Opsional)</label>
+                        <textarea id="notes" name="notes" class="form-control" placeholder="Masukkan catatan khusus untuk pesanan Anda"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary">Batal</button>
+                    <button type="submit" class="btn btn-primary">Pesan Sekarang</button>
+                </div>
+            </form>
+        </section>
+    </div>
+
+    <script>
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            // Validasi sederhana sebelum submit
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            
+            if (!name || !email || !phone) {
+                e.preventDefault();
+                alert('Harap isi semua field yang wajib diisi!');
+                return;
+            }
+            
+            // Simpan data ke localStorage untuk ditampilkan di halaman hasil
+            const formData = {
+                name: name,
+                email: email,
+                phone: phone,
+                address: document.getElementById('address').value,
+                province: document.getElementById('province').value,
+                city: document.getElementById('city').value,
+                postalCode: document.getElementById('postalCode').value,
+                quantity: document.getElementById('quantity').value,
+                payment: document.querySelector('input[name="payment"]:checked').value,
+                notes: document.getElementById('notes').value
+            };
+            
+            localStorage.setItem('orderData', JSON.stringify(formData));
+        });
+    </script>
+</body>
+</html>
